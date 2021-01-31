@@ -15,6 +15,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import web.model.Role;
+import web.model.User;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -61,6 +63,7 @@ public class WebConfig implements WebMvcConfigurer {
         hibernateProperties.setProperty("hibernate.show_sql", "true");
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
         sessionFactory.setHibernateProperties(hibernateProperties);
+        sessionFactory.setAnnotatedClasses(User.class, Role.class );
         return sessionFactory;
     }
 

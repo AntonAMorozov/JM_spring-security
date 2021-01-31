@@ -60,7 +60,7 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         System.out.println("3 User,getAuthorities ");
-        return roles;
+        return getRoles();
     }
 
     @Override

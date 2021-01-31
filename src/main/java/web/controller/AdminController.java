@@ -18,7 +18,7 @@ import java.util.Set;
 
 @Controller
 @RequestMapping("/")
-public class UserController {
+public class AdminController {
 
     @Autowired
     private UserService userService;
@@ -44,8 +44,8 @@ public class UserController {
     @PostMapping("saveUser")
     public String saveUser(@ModelAttribute("newUser") User user) {
         Set<Role> roles = new HashSet<>();
-        roles.add(new Role(2L));
-        user.setRoles(roles);
+//        roles.add(new Role(2L));
+//        user.setRoles(roles);
         userService.saveUser(user);
         return "redirect:admin";
     }

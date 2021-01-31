@@ -22,7 +22,7 @@ public class Role implements GrantedAuthority {
     @Column(name = "role")
     private String role;
     @Transient
-    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 
     public Role(Long id, String role) {
@@ -30,9 +30,6 @@ public class Role implements GrantedAuthority {
         this.role = role;
     }
 
-    public Role(Long id) {
-        this.id = id;
-    }
 
     @Override
     public String getAuthority() {
@@ -59,5 +56,10 @@ public class Role implements GrantedAuthority {
         result = 31 * result + (role != null ? role.hashCode() : 0);
         result = 31 * result + (users != null ? users.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return getAuthority();
     }
 }
