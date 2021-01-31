@@ -1,6 +1,7 @@
 package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -11,7 +12,6 @@ import web.service.UserService;
 
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,9 +28,6 @@ public class AdminController {
         List<User> userList = userService.getAllUsers();
         System.out.println(userList.get(0));
         model.addAttribute("users", userList);
-        model.addAttribute("message", "You are logged in as " + principal.getName());
-        System.out.println(principal.getName());
-        System.out.println(principal.toString());
         return "all-users";
     }
 
@@ -48,11 +45,6 @@ public class AdminController {
 //        user.setRoles(roles);
         userService.saveUser(user);
         return "redirect:admin";
-    }
-
-    @RequestMapping(value = "user", method = RequestMethod.GET)
-    public String welcomeUser() {
-        return "user";
     }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
