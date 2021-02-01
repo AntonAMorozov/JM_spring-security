@@ -38,10 +38,10 @@
         <input hidden type="number" th:field="*{id}" id="id"/>
 
         <label for="username">Username: </label>
-        <input type="text" th:field="*{username}" id="username" placeholder="Username"/>
+        <input type="text" th:field="*{username}" id="username" placeholder="Username" th:required="true"/>
         <br>
         <label for="password">Password</label>
-        <input type="text" th:field="*{password}" id="password" placeholder="Password"/>
+        <input type="text" th:field="*{password}" id="password" placeholder="Password" th:required="true"/>
         <br>
         <label for="firstname">First Name: </label>
         <input type="text" th:field="*{firstname}" id="firstname" placeholder="First Name"/>
@@ -56,24 +56,14 @@
         <input type="text" th:field="*{email}" id="email" placeholder="E-mail"/>
         <br>
         <br>
-<!--        <label for="roles">E-mail</label>-->
-<!--        <input type="text" th:field="*{roles}" id="roles" placeholder="roles"/>-->
-<!--        <input type="email" th:name="emailb" th:placeholder="Emailaaaa" />-->
         <div class="container">
-            <select th:name="role" multiple size="2" >
-                <option th:each="role : ${roles}"
-                        th:value="${role.id}"
-                        th:utext="${role.role}"
-                        ></option>
+            <select th:name="role" multiple size="2" th:required="true">
+                <option th:each="thisRole : ${roles}"
+                        th:value="${thisRole.id}"
+                        th:utext="${thisRole.role}"
+                ></option>
             </select>
         </div>
-<!--        <br>-->
-<!--        <label for="roles">Roles</label>-->
-<!--        <select multiple size="2" id="roles">-->
-<!--            <option value="ROLE_ADMIN">Admin</option>-->
-<!--            <option value="ROLE_USER">User</option>-->
-<!--        </select>-->
-
         <br>
         <br>
         <input type="submit" value="Ok">

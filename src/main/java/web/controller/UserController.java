@@ -21,11 +21,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-//    @RequestMapping(value = "user", method = RequestMethod.GET)
-//    public String welcomeUser() {
-//        return "user";
-//    }
-
     @GetMapping("userInfo")
     public String showAllUsers(Model model, Principal principal) {
         User user = userService.getUserByName(principal.getName());
