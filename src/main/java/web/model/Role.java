@@ -18,6 +18,7 @@ import java.util.Set;
 public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     @Column(name = "role")
     private String role;
@@ -30,6 +31,9 @@ public class Role implements GrantedAuthority {
         this.role = role;
     }
 
+    public Role(Long id) {
+        this.id = id;
+    }
 
     @Override
     public String getAuthority() {
@@ -60,6 +64,6 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String toString() {
-        return getAuthority();
+        return this.role;
     }
 }

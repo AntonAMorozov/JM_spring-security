@@ -32,10 +32,10 @@
         <td th:utext="${user.age}"></td>
         <td th:utext="${user.email}"></td>
         <td>
-            <button th:onclick="|window.location.href='@{/updateUser/{id}(id=${user.id})}'|">
+            <button th:onclick="|window.location.href='@{/admin/updateUser/{id}(id=${user.id})}'|">
                 Update
             </button>
-            <button th:onclick="|window.location.href='@{/deleteUser/{id}(id=${user.id})}'|">
+            <button th:onclick="|window.location.href='@{/admin/deleteUser/{id}(id=${user.id})}'|">
                 Delete
             </button>
         </td>
@@ -44,6 +44,7 @@
         </td>
     </tr>
 </table>
+
 <br>
 <input type="button" value="Add"
        onclick="window.location.href = 'addNewUser'"/>

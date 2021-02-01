@@ -4,15 +4,26 @@
     <meta charset="UTF-8">
     <title>Add/Update user</title>
     <style>
-        html, body{width:100%; height:100%; margin:0}
-        #action_form{
-            position:absolute;
-            width:200px;
-            height:300px;
-            margin-left:10px;
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0
         }
-        form{padding:14px}
-        ul {margin-left: 20px;}
+
+        #action_form {
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            margin-left: 10px;
+        }
+
+        form {
+            padding: 14px
+        }
+
+        ul {
+            margin-left: 20px;
+        }
     </style>
 </head>
 <body>
@@ -22,32 +33,51 @@
 </ul>
 
 <div id="action_form">
-<form th:method="post" th:action="@{/saveUser}" th:object="${newUser}">
+    <form th:method="post" th:action="@{/admin/saveUser}" th:object="${newUser}">
 
-    <input hidden type="number" th:field="*{id}" id="id"  />
+        <input hidden type="number" th:field="*{id}" id="id"/>
 
-    <label for="username">Username: </label>
-    <input type="text" th:field="*{username}" id="username" placeholder="Username" />
-    <br>
-    <label for="password">Password</label>
-    <input type="text" th:field="*{password}" id="password" placeholder="Password" />
-    <br>
-    <label for="firstname">First Name: </label>
-    <input type="text" th:field="*{firstname}" id="firstname" placeholder="First Name" />
-    <br>
-    <label for="lastname">Last Name</label>
-    <input type="text" th:field="*{lastname}" id="lastname" placeholder="Last Name" />
-    <br>
-    <label for="age">Age</label>
-    <input type="number" th:field="*{age}" id="age" placeholder="Age"/>
-    <br>
-    <label for="email">E-mail</label>
-    <input type="text" th:field="*{email}" id="email" placeholder="E-mail" />
-    <br>
-    <br>
-    <br>
-    <input type="submit" value="Ok">
-</form>
+        <label for="username">Username: </label>
+        <input type="text" th:field="*{username}" id="username" placeholder="Username"/>
+        <br>
+        <label for="password">Password</label>
+        <input type="text" th:field="*{password}" id="password" placeholder="Password"/>
+        <br>
+        <label for="firstname">First Name: </label>
+        <input type="text" th:field="*{firstname}" id="firstname" placeholder="First Name"/>
+        <br>
+        <label for="lastname">Last Name</label>
+        <input type="text" th:field="*{lastname}" id="lastname" name="lol" th:name="kek" placeholder="Last Name"/>
+        <br>
+        <label for="age">Age</label>
+        <input type="number" th:field="*{age}" id="age" placeholder="Age"/>
+        <br>
+        <label for="email">E-mail</label>
+        <input type="text" th:field="*{email}" id="email" placeholder="E-mail"/>
+        <br>
+        <br>
+<!--        <label for="roles">E-mail</label>-->
+<!--        <input type="text" th:field="*{roles}" id="roles" placeholder="roles"/>-->
+<!--        <input type="email" th:name="emailb" th:placeholder="Emailaaaa" />-->
+        <div class="container">
+            <select th:name="role" multiple size="2" >
+                <option th:each="role : ${roles}"
+                        th:value="${role.id}"
+                        th:utext="${role.role}"
+                        ></option>
+            </select>
+        </div>
+<!--        <br>-->
+<!--        <label for="roles">Roles</label>-->
+<!--        <select multiple size="2" id="roles">-->
+<!--            <option value="ROLE_ADMIN">Admin</option>-->
+<!--            <option value="ROLE_USER">User</option>-->
+<!--        </select>-->
+
+        <br>
+        <br>
+        <input type="submit" value="Ok">
+    </form>
 </div>
 
 

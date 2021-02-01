@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import web.model.Role;
 import web.model.User;
@@ -43,9 +45,16 @@ public class UserDaoImpl implements UserDao {
 //    @Autowired
 //    private PasswordEncoder passwordEncoder;
 
-//    PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+    @Autowired
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Override
+    public List<Role> getAllRoles() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("from Role", Role.class).getResultList();
+    }
 
     @Override
     public User getUserByName(String username) {
@@ -56,6 +65,12 @@ public class UserDaoImpl implements UserDao {
     public Role getRoleByName(String role) {
 
         return sessionFactory.getCurrentSession().createQuery("from Role where role = '" + role + "'", Role.class).getSingleResult();
+    }
+
+    @Override
+    public Role getRoleById(long id) {
+
+        return sessionFactory.getCurrentSession().createQuery("from Role where id = '" + id + "'", Role.class).getSingleResult();
     }
 
     @Autowired
@@ -72,7 +87,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void saveUser(User user) {
         Session session = sessionFactory.getCurrentSession();
-       // user.setPassword(passwordEncoder().encode(user.getPassword()));
+        user.setPassword(passwordEncoder().encode(user.getPassword()));
         session.saveOrUpdate(user);
     }
 
